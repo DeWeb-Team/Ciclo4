@@ -1,10 +1,63 @@
 [
     {
-        "producto":"sol de espuma",
-        "valor":50
+        "id":1,
+        "producto":"Balon",
+        "valor":20000,
+        "cantidad":80
     },
     {
-        "producto":"corazon de juguete",
-        "valor":50
+        "id":2,
+        "producto":"Barbie",
+        "valor":100000,
+        "cantidad":20
+    },
+    {
+        "id":3,
+        "producto":"Carrito",
+        "valor":15000,
+        "cantidad":60
+    },
+    {
+        "id":4,
+        "producto":"Abaco",
+        "valor":25000,
+        "cantidad":15
+    },
+    {
+        "id":5,
+        "producto":"Celular",
+        "valor":25000,
+        "cantidad":30
+    },
+    {
+        "id":6,
+        "producto":"Tamagochi",
+        "valor":20000,
+        "cantidad":15
+    },
+    {
+        "id":7,
+        "producto":"Yoyo",
+        "valor":10000,
+        "cantidad":30
+    },
+    {
+        "id":8,
+        "producto":"Plastilina",
+        "valor":10000,
+        "cantidad":50
+    },
+    {
+        "id":9,
+        "producto":"Peluche",
+        "valor":60000,
+        "cantidad":15
+    },
+    {
+        "id":10,
+        "producto":"Git Doctor",
+        "valor":70000,
+        "cantidad":10
     }
+
 ]
