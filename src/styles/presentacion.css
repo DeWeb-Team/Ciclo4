@@ -1,0 +1,25 @@
+#contenedor-presentacion{
+    color: white;
+    background-color: black;
+}
+
+.presentacion-titulo{
+    margin: 0 0 20px;
+}
+
+#presentacion-guia{
+    height: 50px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.guia-botones{
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+}

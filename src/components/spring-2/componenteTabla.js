@@ -1,5 +1,5 @@
-import "../style/estiloTabla.css";
-import data from "../util/json.json";
+import "../../styles/estiloTabla.css";
+import data from "../../util/venta.json";
 
 function ValorTabla(prop) {
   return (
@@ -9,7 +9,7 @@ function ValorTabla(prop) {
     >
       <td className="td-ventas">{prop.fecha}</td>
       <td className="td-ventas">{prop.idVenta}</td>
-      <td className="td-ventas">$ {prop.valor}</td>
+      <td className="td-ventas">$ {prop.valor.toLocaleString('es-CO')}</td>
     </tr>
   );
 }
@@ -35,7 +35,7 @@ function CantidadVentas() {
   );
 }
 
-function Tabla() {
+function TablaVentas() {
   let contador = 0.3;
 
   const LLamarDatos = data.map((dato, index) => (
@@ -51,19 +51,21 @@ function Tabla() {
   return (
     <div>
       <h1 className="titulo-tabla"> Reporte Ventas</h1>
-      <CantidadVentas />
-      <table id="tabla-ventas">
-        <thead>
-          <tr className="tr-ventas">
-            <th className="th-ventas">Fecha</th>
-            <th className="th-ventas">IdVenta</th>
-            <th className="th-ventas">Valor</th>
-          </tr>
-        </thead>
-        <tbody>{LLamarDatos}</tbody>
-      </table>
+      <div id="contenedor-tabla">
+        <CantidadVentas />
+        <table id="tabla-ventas">
+          <thead>
+            <tr className="tr-ventas">
+              <th className="th-ventas">Fecha</th>
+              <th className="th-ventas">IdVenta</th>
+              <th className="th-ventas">Valor</th>
+            </tr>
+          </thead>
+          <tbody>{LLamarDatos}</tbody>
+        </table>
+      </div>
     </div>
   );
 }
 
-export default Tabla;
+export default TablaVentas;

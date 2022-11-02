@@ -1,12 +1,10 @@
-:root {
-    --color-td: rgba(0, 195, 255, 0.3);
-}
 
 #tabla-ventas {
     margin: 0 auto;
     max-width: 90%;
     min-width: 500px;
     margin-bottom: 50px;
+    display: block;
 }
 
 .th-ventas,
@@ -44,11 +42,15 @@
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
+#contenedor-tabla{
+    display: flex;
+    width: 830px;
+    height: 100%;
+    margin: 0 auto;
+    gap: 5px;
+}
+
 #contenedor-cantidadVentas{
-    padding: 10px 0;
-    position: absolute;
-    top: 70px;
-    left: 240px;
     opacity: 0;
     animation: aparecer 1s 1 forwards;
 }
@@ -58,7 +60,6 @@
         opacity: 1;
     }
 }
-
 
 .titulo-cantidadVentas{
     margin: 10px 0;
