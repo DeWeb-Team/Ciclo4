@@ -33,10 +33,19 @@ function MostrarProductos(props){
         <div className='product__details'>
             <p className='product__stock'> {props.stock.toLocaleString('es-CO')}</p>
             <p className='product__valor'>${props.valor.toLocaleString('es-CO')}</p>
+            
+            <label for="cantidad">Selecciona cantidad:</label>
+            <select name="cantidad" id="cantidad">
+              <option value="1">1</option> 
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
             <button onClick={()=>{alert(`Agregaste ${props.name} al carrito de compras`)}}>Comprar</button>
         </div>
     </div>
-  )
+      )
 }
 
 export default ContenedorProductos;
