@@ -3,6 +3,9 @@ import '../../styles/estiloMostrarProductos.css'
 import data from '../../util/data.json';
 
 
+//Funcion daniel
+
+
 function ContenedorProductos() {
 
   const cargarProductos = data.map((product,index) => (
