@@ -1,14 +1,27 @@
 import React from 'react'
 import '../../styles/estiloMostrarProductos.css'
 import data from '../../util/data.json';
+import {obtenerProductos} from '../peticiones.js'
 
 
 //Funcion daniel
 
+function AgregarProducto(id){
+  console.log(id)
+}
+
 
 function ContenedorProductos() {
 
-  const cargarProductos = data.map((product,index) => (
+  let productosArray = []
+
+  let contProducto = async() => { 
+    productosArray = await obtenerProductos()    
+  }
+  contProducto()
+  console.log(productosArray)
+  
+  const cargarProductos = productosArray.map((product,index) => (
     <MostrarProductos
       key={index}
       name={product.producto}
