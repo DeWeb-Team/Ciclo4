@@ -44,7 +44,7 @@ export const agregarProductos = async (req, res) => {
   }
 };
 
-export const actualizarProductos = async (req, res) => {
+export const actualizarUnProducto = async (req, res) => {
   try {
     const upProduct = await Producto.findByIdAndUpdate(
       req.params.id,
@@ -115,6 +115,7 @@ export const agregarCarrito = async (req, res) => {
 
     const newCarrito = new Carrito({
       producto: {
+        _id:  producto._id,
         nombre: producto.producto,
         valor: producto.valor,
         image: producto.image.url,
@@ -140,7 +141,7 @@ export const agregarVentas = async (req, res) => {
       valor,
       cantidad,
       producto,
-      vendedor
+      vendedor,
     });
     await newVentas.save();
     return res.send(newVentas);
@@ -155,6 +156,56 @@ export const eliminarCarrito = async (req, res) => {
     const delCarro = await Carrito.findByIdAndDelete(req.params.id);
     if (!delCarro) return res.sendStatus(404);
     return res.sendStatus(204);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json("Error: " + error.message);
+  }
+};
+
+export const borrarCarrito = async (req, res) => {
+  try {
+    const delCarro = await Carrito.deleteMany(req.params);
+    if (!delCarro) return res.sendStatus(404);
+    return res.sendStatus(204);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json("Error: " + error.message);
+  }
+};
+
+export const agregarCompra = async (req, res) => {
+  try {
+
+    let con = 0;
+    let nombreVenta = '';
+
+    let carrito = await Carrito.find();
+
+    const upProduct = async (idProducto, cantidad) => {
+      con += cantidad;
+
+      let producto = await Producto.findById(idProducto);
+
+      let nuevaCantidad = (producto.cantidad - cantidad);
+      await Producto.findByIdAndUpdate(idProducto, {cantidad : nuevaCantidad}, { new: true });
+    };
+
+    for (let i = 0; i < carrito.length; i++) {
+      upProduct(carrito[i].producto._id, carrito[i].cantidad);
+      nombreVenta += (carrito[i].producto.nombre + " ").replace(" "," - ");
+    }
+
+    const newVenta = new Ventas({
+      valor: req.params.total,
+      cantidad:con,
+      producto:nombreVenta,
+      vendedor:"Cajero 1"
+    });
+
+    await newVenta.save();
+
+    //retorna el objet que hemos actualizado
+    return res.status(200).json("Se actualizaron los productos");
   } catch (error) {
     console.log(error.message);
     return res.status(500).json("Error: " + error.message);

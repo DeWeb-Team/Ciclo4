@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 
 const schemaVentas = new mongoose.Schema({
     fecha: {
-        type: String,
+        type: Date,
+        default:Date.now,
         require: true,
         trim: true
     },

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const schemaCarrito = new mongoose.Schema({
     producto:{
+        _id:String,
         image:String,
         nombre:String,
         descripcion:String,
