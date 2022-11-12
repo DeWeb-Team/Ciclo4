@@ -1,19 +1,16 @@
 import "../../styles/estiloCarrito.css";
 
-
 function ValorTabla(prop) {
-
-    const eliminarProducto = async (id) => {
-
-        let res = await fetch("http://localhost:4000/carrito/" + id, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            }
-          });
-        alert(res);
-        window.location.reload();
-      };
+  const eliminarProducto = async (id) => {
+    let res = await fetch("http://localhost:4000/carrito/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    alert(res);
+    window.location.reload();
+  };
 
   return (
     <tr
@@ -28,7 +25,10 @@ function ValorTabla(prop) {
       <td className="td-carrito"> $ {prop.valor.toLocaleString("es-CO")}</td>
       <td className="td-carrito"> $ {prop.total.toLocaleString("es-CO")}</td>
       <td className="td-carrito">
-        <button onClick={() => (eliminarProducto(prop.id))} className="botones-opciones">
+        <button
+          onClick={() => eliminarProducto(prop.id)}
+          className="botones-opciones"
+        >
           Cancelar
         </button>
       </td>
@@ -36,9 +36,31 @@ function ValorTabla(prop) {
   );
 }
 
-function OpcionesCarrito() {
-  const finalizarCompra = () => alert("Compra finalizada");
-  const cancelarCompra = () => alert("Cancelar compra");
+function OpcionesCarrito(props) {
+
+  console.log(props.total);
+
+  const cancelarCompra = () => {
+    fetch("http://localhost:4000/carrito", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    alert("Carrito Limpiado");
+    window.location.reload();
+  };
+
+  const finalizarCompra = async () => {
+    await fetch("http://localhost:4000/venta/"+props.total, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    });
+    alert("Compra realizada");
+    cancelarCompra();
+  };
 
   return (
     <div id="contenedor-botones">
@@ -96,7 +118,7 @@ function TablaCarrito(carrito) {
           </tr>
         </tfoot>
       </table>
-      <OpcionesCarrito />
+      <OpcionesCarrito total={totalCompra} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "../../styles/estiloMostrarProductos.css";
 
 function ContenedorProductos(productos) {
   const cargarProductos = productos.map((product, index) => (
-    <MostrarProductos
+      <MostrarProductos
       key={index}
       name={product.producto}
       valor={product.valor}
