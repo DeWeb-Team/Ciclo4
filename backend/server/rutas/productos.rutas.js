@@ -1,5 +1,5 @@
 import {Router } from 'express'; //modulo para llamar las rutas
-import  {obtenerProductos, agregarProductos, actualizarProductos, eliminarProductos, obtenerunProducto, obtenerVentas, obtenerCarrito, agregarCarrito } from '../controladores/productos.Controladores.js';
+import  {obtenerProductos, agregarProductos, actualizarProductos, eliminarProductos, obtenerunProducto, obtenerVentas, obtenerCarrito, agregarCarrito, agregarVentas, eliminarCarrito } from '../controladores/productos.Controladores.js';
 
 const router = Router();
 
@@ -11,7 +11,10 @@ router.delete('/productos/:id',eliminarProductos)
 router.get('/productos/:id',obtenerunProducto)
 
 router.get('/ventas', obtenerVentas)
+router.post('/ventas', agregarVentas)
 
 router.get('/carrito', obtenerCarrito)
 router.post('/carrito/:id', agregarCarrito)
+router.delete('/carrito/:id',eliminarCarrito)
+
 export default router

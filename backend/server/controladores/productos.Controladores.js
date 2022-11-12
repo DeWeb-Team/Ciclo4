@@ -130,3 +130,33 @@ export const agregarCarrito = async (req, res) => {
     return res.status(500).json("Error: " + error.message);
   }
 };
+
+export const agregarVentas = async (req, res) => {
+  try {
+    const { fecha, valor, cantidad, producto, vendedor } = req.body;
+
+    const newVentas = new Ventas({
+      fecha,
+      valor,
+      cantidad,
+      producto,
+      vendedor
+    });
+    await newVentas.save();
+    return res.send(newVentas);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json("Error: " + error.message);
+  }
+};
+
+export const eliminarCarrito = async (req, res) => {
+  try {
+    const delCarro = await Carrito.findByIdAndDelete(req.params.id);
+    if (!delCarro) return res.sendStatus(404);
+    return res.sendStatus(204);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json("Error: " + error.message);
+  }
+};
