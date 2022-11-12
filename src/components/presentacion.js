@@ -4,10 +4,23 @@ import MostrarProductos from "./spring-2/componenteMostrarProductos";
 import VisualizacionProductos from "./spring-2/componenteVistaProductos";
 import AgregarProducto from './spring-2/componenteAgregarProducto';
 import "../styles/presentacion.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Presentacion() {
-  let [body, setBody] = useState("");
+
+  const [body, setBody] = useState("");
+  const [producto, setProducto] = useState();
+
+  useEffect(() => {
+    obtenerProductos()
+  },[]);
+
+  const obtenerProductos = async() =>{
+    const data = await fetch('http://localhost:4000/productos')
+    const productos = await data.json()
+    setProducto(productos)
+  }
+
 
   return (
     <div id="contendedor-padre">
@@ -31,7 +44,7 @@ function Presentacion() {
           </button>
           <button
             className="guia-botones"
-            onClick={() => setBody(MostrarProductos)}
+            onClick={() => setBody(MostrarProductos(producto))}
           >
             Comprar productos |
           </button>
