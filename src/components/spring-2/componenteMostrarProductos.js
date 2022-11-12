@@ -33,7 +33,8 @@ function MostrarProductos(props) {
       body: JSON.stringify(datos),
     });
     res = await res.json();
-    alert(JSON.stringify(res))
+    alert(JSON.stringify(res));
+    window.location.reload();
   };
 
   return (
@@ -47,7 +48,7 @@ function MostrarProductos(props) {
       ></img>
       <h2 className="product__name"> {props.name} </h2>
       <div className="product__details">
-        <p className="product__stock"> {props.stock.toLocaleString("es-CO")}</p>
+        <p className="product__stock">Stock: {props.stock}</p>
         <p className="product__valor">${props.valor.toLocaleString("es-CO")}</p>
 
         <label>Selecciona cantidad:</label>

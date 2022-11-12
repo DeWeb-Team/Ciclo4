@@ -10,9 +10,11 @@ function Presentacion() {
 
   const [body, setBody] = useState("");
   const [producto, setProducto] = useState();
+  const [carrito, setCarrito] = useState();
 
   useEffect(() => {
-    obtenerProductos()
+    obtenerProductos();
+    obtenerCarrito();
   },[]);
 
   const obtenerProductos = async() =>{
@@ -21,6 +23,12 @@ function Presentacion() {
     setProducto(productos)
   }
 
+  const obtenerCarrito = async() =>{
+    const data = await fetch('http://localhost:4000/carrito')
+    const carritos = await data.json()
+    console.log(carritos)
+    setCarrito(carritos)
+  }
 
   return (
     <div id="contendedor-padre">
@@ -50,7 +58,7 @@ function Presentacion() {
           </button>
           <button
             className="guia-botones"
-            onClick={() => setBody(TablaCarrito)}
+            onClick={() => setBody(TablaCarrito(carrito))}
           >
             Carrito
           </button>
